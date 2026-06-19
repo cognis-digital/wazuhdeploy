@@ -1,0 +1,22 @@
+# wazuhdeploy ignores
+
+# Generated deployment artifacts.
+/deploy/
+/deploy-*/
+wazuh-data/
+resolved.env
+
+# Anything emitted into a conventional out dir during local runs.
+/out/
+/build/
+
+# OS / editor cruft.
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Test scratch.
+*.tmp
+*.tmp.*
+.test-work/

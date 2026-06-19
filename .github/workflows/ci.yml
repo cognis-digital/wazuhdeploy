@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Shellcheck
+        run: |
+          shellcheck wazuhdeploy.sh lib/*.sh tests/run.sh
+
+      - name: Run test suite
+        run: bash tests/run.sh
+
+      - name: Smoke-test the CLI
+        run: |
+          export NO_COLOR=1
+          bash wazuhdeploy.sh validate --config examples/wazuh.env
+          bash wazuhdeploy.sh generate --config examples/wazuh.env --out ./_ci_out
+          test -f ./_ci_out/docker-compose.yml
+          bash wazuhdeploy.sh healthcheck --config examples/wazuh.env --dry-run
