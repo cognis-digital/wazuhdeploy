@@ -16,7 +16,7 @@ jobs:
 
       - name: Shellcheck
         run: |
-          shellcheck wazuhdeploy.sh lib/*.sh tests/run.sh
+          shellcheck --severity=error wazuhdeploy.sh lib/*.sh tests/run.sh
 
       - name: Run test suite
         run: bash tests/run.sh
