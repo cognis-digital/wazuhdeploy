@@ -15,6 +15,39 @@ It does **not** require Wazuh or Docker to be installed in order to generate
 configs or to run its own test suite. Scope is strictly defensive /
 deployment-side.
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"status": "success",
+"message": "Deployment successful",
+"data": {
+"wazuh_server": {
+"ip": "192.168.1.100",
+"port": 55000
+},
+"agent": {
+"count": 5,
+"nodes": [
+{
+"id": "node-1",
+"ip": "192.168.1.101"
+},
+{
+"id": "node-2",
+"ip": "192.168.1.102"
+}
+]
+}
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Features
 
 - `generate` — emit `docker-compose.yml` + base configs (`ossec.conf`,
